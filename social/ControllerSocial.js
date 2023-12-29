@@ -1,5 +1,4 @@
 import Social from "./ModelSocial.js";
-import argon2 from "argon2";
 
 export const createSocial = async (req, res) => {
   const { media, content } = req.body;
