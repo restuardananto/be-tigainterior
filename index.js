@@ -10,6 +10,8 @@ import RoutePromo from "./promo/RoutePromo.js";
 import RouteAuth from "./auth/RouteAuth.js";
 import RouteUser from "./auth/RouteUser.js";
 import RouteSocial from "./social/RouteSocial.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const sessionStore = SequelizeStore(session.Store);
@@ -39,7 +41,7 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:5173", "http://localhost"],
+    origin: ["http://localhost"],
   })
 );
 
