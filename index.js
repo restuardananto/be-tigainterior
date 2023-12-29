@@ -20,9 +20,9 @@ const store = new sessionStore({
   checkExpirationInterval: 1 * 60 * 60 * 1000,
 });
 
-// (async () => {
-//   await db.sync({ alter: true });
-// })();
+(async () => {
+  await db.sync({ alter: true });
+})();
 
 app.use(
   session({
@@ -55,6 +55,6 @@ app.use(RouteAuth);
 app.use(RouteUser);
 app.use(RouteSocial);
 
-app.listen(8097, () => {
+app.listen(process.env.PORT, () => {
   console.log("API Running");
 });
