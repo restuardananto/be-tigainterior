@@ -20,9 +20,9 @@ const store = new sessionStore({
   checkExpirationInterval: 1 * 60 * 60 * 1000,
 });
 
-(async () => {
-  await db.sync({ alter: true });
-})();
+// (async () => {
+//   await db.sync({ alter: true });
+// })();
 
 app.use(
   session({
@@ -41,7 +41,7 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost"],
+    origin: ["http://localhost:5173"],
   })
 );
 

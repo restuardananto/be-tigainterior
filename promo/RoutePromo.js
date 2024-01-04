@@ -10,7 +10,7 @@ import { verifyUser } from "../auth/Middleware.js";
 const router = express.Router();
 
 router.post("/promo", verifyUser, createPromo);
-router.get("/promo", getAllPromo);
+router.get("/promo", verifyUser, getAllPromo);
 router.get("/displaypromo", displayPromo);
 router.delete("/promo/:id", verifyUser, deletePromo);
 
