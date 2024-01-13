@@ -8,7 +8,7 @@ const db = new Sequelize(
   `${process.env.PASS_DB}`,
   {
     dialect: "mysql",
-    host: "localhost",
+    host: "127.0.0.1",
     timezone: "+07:00",
   }
 );
