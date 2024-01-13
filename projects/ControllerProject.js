@@ -283,7 +283,7 @@ export const deleteProject = async (req, res) => {
     fs.unlinkSync(filePath);
     await Project.destroy({
       where: {
-        id: req.params.id,
+        id: project.id,
       },
     });
     res.status(200).json({ msg: "Project deleted successfully" });

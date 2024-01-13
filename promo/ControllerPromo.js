@@ -49,6 +49,7 @@ export const getAllPromo = async (req, res) => {
   try {
     const response = await Promo.findAll({
       attributes: ["id", "title", "url"],
+      order: [["id", "DESC"]],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -74,14 +75,14 @@ export const deletePromo = async (req, res) => {
       id: req.params.id,
     },
   });
-  if (!promos) return res.status(404).json({ msg: "Hero not found" });
+  if (!promos) return res.status(404).json({ msg: "Promo not found" });
 
   try {
-    const filePath = `./public/hero/${promos.promo}`;
+    const filePath = `./public/promo/${promos.promo}`;
     fs.unlinkSync(filePath);
     await Promo.destroy({
       where: {
-        id: req.params.id,
+        id: promos.id,
       },
     });
     res.status(200).json({ msg: "Promo deleted successfully" });

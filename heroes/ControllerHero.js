@@ -24,7 +24,7 @@ export const createHero = (req, res) => {
   console.log(fileName);
 
   const url = `${req.protocol}://${req.get("host")}/hero/${fileName}`;
-  const allowedType = [".png", ".jpg", ".jpeg"];
+  const allowedType = [".png", ".jpg", ".svg", ".jpeg"];
   if (!title) return res.status(400).json({ msg: "Must be a title" });
   if (!allowedType.includes(ext.toLowerCase()))
     return res.status(422).json({ msg: "Invalid Images" });
@@ -33,16 +33,16 @@ export const createHero = (req, res) => {
 
   hero.mv(`./public/hero/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
-    try {
-      await Hero.create({
-        title: title,
-        hero: fileName,
-        url: url,
-      });
-      res.status(201).json({ msg: "Hero uploaded" });
-    } catch (error) {
-      res.status(500).json({ msg: error.message });
-    }
+    await Hero.create({
+      title: title,
+      hero: fileName,
+      url: url,
+    });
+    res.status(201).json({ msg: "Hero uploaded" });
+    // try {
+    // } catch (error) {
+    //   res.status(500).json({ msg: error.message });
+    // }
   });
 };
 
@@ -81,7 +81,7 @@ export const deleteHero = async (req, res) => {
     fs.unlinkSync(filePath);
     await Hero.destroy({
       where: {
-        id: req.params.id,
+        id: heroes.id,
       },
     });
     res.status(200).json({ msg: "Hero deleted successfully" });
