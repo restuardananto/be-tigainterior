@@ -41,7 +41,7 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: ["http://tigainterior.com"],
+    origin: ["http://localhost:5173"],
   })
 );
 
