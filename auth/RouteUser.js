@@ -10,8 +10,8 @@ import { verifyUser } from "./Middleware.js";
 
 const router = express.Router();
 
-router.post("/user", createUser);
-router.get("/user", getUser);
+router.post("/user", verifyUser, createUser);
+router.get("/user", verifyUser, getUser);
 router.get("/user/:id", verifyUser, getUserById);
 router.patch("/user/:id", verifyUser, updateUser);
 router.delete("/user/:id", verifyUser, deleteUser);
